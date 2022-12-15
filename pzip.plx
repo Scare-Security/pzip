@@ -16,11 +16,10 @@ GetOptions (
 ) or die $usage;
 die $usage unless(defined($zipfile) && defined($wordlist));
 
-# open the zip file and the wordlist
 open my $WORDLIST, '<', $wordlist
     or die "couldn't open wordlist: $!\n";
 
-# try all password
+# try all password and reopen the archive each time (required)
 my $found = 0;
 my $pwd;
 while(defined($pwd = <$WORDLIST>)) {
